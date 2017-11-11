@@ -1,0 +1,91 @@
+body{
+    background-image: url("https://www.theawl.com/wp-content/uploads/2014/06/00P4qjvyJM4fvw35B.jpg");
+    text-align: center;
+    margin-top: 15%;
+}
+
+.heading{
+    position: relative;
+    text-align: center;
+
+    font-size: 55px;
+    color: #ffffff;
+    font-family: sans-serif, "Helvetica";
+
+    text-shadow: 7px 7px 30px black ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ddf5ff;
+}
+
+.user{
+    position: relative;
+    text-align: center;
+    margin-top: -3%;
+
+}
+
+
+input[placeholder], [placeholder], *[placeholder]{
+    border-radius: 10px;
+    background: #ebfdff;
+    padding: 10px 15px;
+    border: 1px solid black;
+}
+
+
+.username {
+    text-align: center;
+    top: 220px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.help{
+    text-align: center;
+    font-family: sans-serif, "Helvetica";
+}
+
+.ton{
+    padding: 6px;
+
+}
+
+
+.b1{
+    background-color: #f4f1ff;
+    color: black;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 15%;
+    display: inline-block;
+}
+
+.b1:hover{
+    background-color: #e8e0ff;
+    box-shadow: 2px 2px 2px 0 black;
+
+
+}
+input:focus{
+    outline: none;
+}
+button:focus{
+    outline: none;
+}
+.myform {
+    text-align: center;
+
+
+}
+.major{
+    text-align: center;
+
+}
+.email{
+    text-align: center;
+
+}
