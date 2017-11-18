@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var bp = require('body parser');
+var bp = require('body-parser');
 
 app = express();
 
@@ -17,7 +17,7 @@ app.get('/', function(req, res){ //why is there an error in the get here, but no
 /* gives the user the signup html page at the domain home path
  Must figure out how to include css part*/
 app.get('/SignUp', function(req, res){
-    res.sendFile(path.join('__dirname', '..', 'client', 'SignupNew.html');
+    res.sendFile(path.join('__dirname', '..', 'client', 'SignupNew.html'));
 });
 
 app.post('/NewUser', function(req, res)  {
