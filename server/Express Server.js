@@ -3,6 +3,8 @@ var path = require('path');
 var bp = require('body-parser');
 
 app = express();
+app.use(bp.json());
+app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));
 
 const PORT = 4000;
 
@@ -16,8 +18,8 @@ app.get('/', function(req, res){ //why is there an error in the get here, but no
 
 /* gives the user the signup html page at the domain home path
  Must figure out how to include css part*/
-app.get('/SignUp', function(req, res){
-    res.sendFile(path.join('__dirname', '..', 'client', 'SignupNew.html'));
+app.get('/SignUp', function(req, res) {
+    res.sendFile(path.join(__dirname, '..', 'client', 'SignUpNew.html'));
 });
 
 app.post('/NewUser', function(req, res)  {
@@ -28,4 +30,4 @@ app.post('/NewUser', function(req, res)  {
 
 // start the server
 app.listen(PORT);
-console.log('Listening on port ' + 'PORT'); //why does this not get logged when running the program?
+console.log('Listening on port ' + PORT); //why does this not get logged when running the program?
