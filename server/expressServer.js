@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 
 // gives the user the signup html page at the domain home path
 app.get('/SignUp', function(req, res){
-    res.sendFile(path.join(__dirname, '..', 'client', 'SignupNew.html'));
+    res.sendFile(path.join(__dirname, '..', 'client', 'signUpNew.html'));
 });
 
 app.post('/NewUser', function(req, res){
