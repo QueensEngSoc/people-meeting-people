@@ -1,4 +1,3 @@
 .idea/*
-node_modules
+nodeModules
 .DS_Store
-server/config/config.js
