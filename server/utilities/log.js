@@ -1,7 +1,8 @@
 /**
  * @fileoverview logging utilities, logs to console during testing and
  * to a log file if in production
- * @author astral.cai@queensu.ca (Astral Cai)
+ * @author Michael Albinson
+ * @modifier astral.cai@queensu.ca (Astral Cai)
  *
  * Adapted from:
  *  https://github.com/essdev-team/forum/blob/master/server/util/log.js
