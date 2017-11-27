@@ -1,8 +1,24 @@
-const config = require('./config/config');
-const dbsetup = require('./setup/dbsetup');
+/**
+ * @fileoverview setup code for the server
+ * @author astral.cai@queensu.ca (Astral Cai)
+ */
 
-dbsetup().then(function (result) {
-    console.log(result);
-}).catch(function (err) {
-    console.log(err);
+"use strict";
+
+const dbsetup = require('./setup/db_setup');
+const log = require('./utilities/log');
+
+setup().then(() => {
+    log.log("setup completed!");
+}).catch((err) => {
+    log.error(err);
 });
+
+function setup() {
+    return new Promise((resolve, reject) => {
+        dbsetup().then((res) => {
+            log.log(res);
+            resolve();
+        }).catch(reject);
+    });
+}

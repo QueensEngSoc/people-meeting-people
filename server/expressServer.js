@@ -1,12 +1,14 @@
 var express = require('express');
 var path = require('path');
 var bp = require('body-parser');
+const config = require('../config/config');
+const server_config = config.server_config;
 
 app = express();
 app.use(bp.json());
 app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));
 
-const PORT = 4000;
+const PORT = server_config.port;
 
 // gives the user the signup html page at the domain home path
 app.get('/', function(req, res){
