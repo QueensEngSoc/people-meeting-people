@@ -13,7 +13,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const lit = require('./literals');
 const config = require('../config/config');
 
 const isInProduction = config.isInProduction;
