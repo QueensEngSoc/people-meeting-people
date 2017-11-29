@@ -17,12 +17,8 @@ body{
     -webkit-text-fill-color: #ddf5ff;
 }
 
-.user{
-    position: relative;
-    text-align: center;
-    margin-top: -3%;
 
-}
+
 
 
 input[placeholder], [placeholder], *[placeholder]{
@@ -36,6 +32,8 @@ input[placeholder], [placeholder], *[placeholder]{
 .username {
     text-align: center;
     top: 220px;
+    margin-top: -4%;
+    padding: 0.5%;
 }
 
 a{
@@ -78,14 +76,16 @@ button:focus{
 }
 .myform {
     text-align: center;
+    padding: 0.5%;
 
 
 }
 .major{
     text-align: center;
+    padding: 0.5%;
 
 }
 .email{
     text-align: center;
-
+    padding: 0.5%;
 }
