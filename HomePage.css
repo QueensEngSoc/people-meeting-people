@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif, 'Helvetica';
+    line-height: 1.5;
+    background-image: url('http://static.simpledesktops.com/uploads/desktops/2013/08/08/see-ya-there.png');
+    background-position-y: 54%;
+    background-position-x: 16%;
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    color: white;
+    background: white;
+    min-height: 70px;
+    padding-top: 2%;
+    border-bottom: darkblue solid;
+    border-width: 4px;
+}
+
+header a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: darkblue;
+    font-size: 20px;
+}
+header li{
+    float: right;
+    display: inline;
+    text-decoration: none;
+    padding: 0 20px 0 20px;
+}
+
+header #name{
+    float: left;
+    color: darkblue;
+
+}
+header #name h1{
+    margin: 0;
+    padding-bottom: 0;
+}
+
+header nav{
+    margin-top: 6px;
+    float: right;
+}
+
+header a:hover{
+    font-weight: bold;
+    color: darkblue;
+}
+
+#mid .about{
+    font-size: 30px;
+    color: white;
+    line-height: .5;
+}
+#mid{
+    margin-top: 15%;
+    margin-left: 15%;
+}
+.about h1{
+    text-shadow: 2px 4px darkblue;
+}
+footer{
+    margin-top: 30%
+}
+
+footer .end {
+    text-align: center;
+    color: white;
+}
+.end p{
+    text-shadow: 2px 2px #00008b;
+}
+
+#description .info{
+    color: darkblue;
+    font-size: 18px;
+    display: block;
+    background: white;
+    padding: 18px;
+    width: 18%;
+    border-radius: 6px;
+    margin-left: 20%;
+    opacity: 0.9;
+}
+
+#description p{
+    font-weight: bold;
+    text-align: center;
+}
+#description .info{
+    box-shadow: 2px 4px darkblue;
+}
