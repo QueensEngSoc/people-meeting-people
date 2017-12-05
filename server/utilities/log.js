@@ -63,7 +63,7 @@ function writeToFile(logString) {
         });
     }).catch((err) => {
         console.log(err);
-    })
+    });
 }
 
 function openFile(filePath, mode) {
@@ -71,8 +71,8 @@ function openFile(filePath, mode) {
         fs.open(filePath, mode, (err, fd) => {
             if (err) reject(err);
             else resolve(fd);
-        })
-    })
+        });
+    });
 }
 
 function writeFile(logString, fd) {
@@ -80,8 +80,8 @@ function writeFile(logString, fd) {
         fs.writeFile(fd, logString, (err) => {
             if (err) reject(err);
             else resolve(fd);
-        })
-    })
+        });
+    });
 }
 
 function getTime() {
