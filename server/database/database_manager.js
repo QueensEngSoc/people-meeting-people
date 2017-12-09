@@ -39,7 +39,10 @@ class DatabaseManager {
 
     /**
      * Creates a new user and saves it to the database
-     * @param {Object} values Basic user information required to create a new user
+     * @param {Object} values - Basic user information required to create a new user
+     * @param {String} values.netID - The netID of the new user, once set, cannot be changed
+     * @param {String} values.name - The name of the new user
+     * @param {String} values.email - The email of the new user
      * @return {Promise<User|DatabaseError>} resolves a User object
      */
     createUser(values) {

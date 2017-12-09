@@ -44,3 +44,13 @@ class DuplicateEntryError extends DatabaseError {
 }
 
 exports.DuplicateEntryError = DuplicateEntryError;
+
+class IllegalEntryError extends DatabaseError {
+    constructor(message) {
+        super(message);
+        this.name = 'IllegalEntryError';
+        Error.captureStackTrace(this, this.constructor);
+    }
+}
+
+exports.IllegalEntryError = IllegalEntryError;
