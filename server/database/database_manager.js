@@ -29,11 +29,20 @@ class DatabaseManager {
                 dialect: 'mysql',
                 operatorsAliases: false
             });
+        this.models_ = {};
         let thisManager = this;
-        Object.keys(tables).forEach((key) => {
+        let thisConnection = this.connection_;
+        for (let key in tables) {
+            if (!tables.hasOwnProperty(key)) {
+                break;
+            }
             let table = tables[key];
-            let con = thisManager.connection_;
-            thisManager[table.table_name] = con.define(table.table_name, table.fields);
+            thisManager.models_[table.table_name] = thisConnection.define(table.table_name, table.fields);
+        }
+        Object.keys(tables).forEach((key) => {
+            if ('associations' in tables[key]) {
+                tables[key].associations(thisManager.models_);
+            }
         });
     }
 

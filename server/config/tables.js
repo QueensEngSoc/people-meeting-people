@@ -1,25 +1,46 @@
 /**
- * @fileoverview tables and their columns
+ * @fileoverview tables for the database and column settings in Sequelize format
  */
 
 const Sequelize = require('sequelize');
+const lit = require('../utilities/literals');
 
 const tables = {
     '1': {
-        table_name: 'HousingPreferences',
+        table_name: 'Users',
         fields: {
-            'preferenceID': {
-                type: Sequelize.MEDIUMINT.UNSIGNED,
-                allowNull: true,
+            'netId': {
+                type: Sequelize.STRING(10),
+                allowNull: false,
                 primaryKey: true,
-                autoIncrement: true
+                validate: {
+                    isAlphanumeric: true
+                }
+            },
+            'name': {
+                type: Sequelize.STRING(80),
+                allowNull: false,
+                validate: {
+                    is: /^[a-zA-Z ]+$/i
+                }
+            },
+            'email': {
+                type: Sequelize.STRING,
+                unique: true,
+                validate: {
+                    isEmail: true
+                }
             }
+        },
+        associations: (models) => {
+            let thisModel = models[lit.tables.USERS];
+            thisModel.hasOne(models[lit.tables.PROFILES], {as: 'profile', foreignKey: 'userId'});
         }
     },
     '2': {
         table_name: 'Profiles',
         fields: {
-            'profileID': {
+            'profileId': {
                 type: Sequelize.MEDIUMINT.UNSIGNED,
                 allowNull: true,
                 primaryKey: true,
@@ -45,20 +66,41 @@ const tables = {
             },
             'selfDescription': {
                 type: Sequelize.TEXT
-            },
-            'housingPreference': {
-                type: Sequelize.MEDIUMINT.UNSIGNED,
-                references: {
-                    model: 'HousingPreferences',
-                    key: 'preferenceID'
-                }
             }
+        },
+        associations: (models) => {
+            let thisModel = models[lit.tables.PROFILES];
+            thisModel.hasOne(models[lit.tables.HOUSING_PREFERENCES], {foreignKey: 'profileId'});
         }
     },
     '3': {
+        table_name: 'HousingPreferences',
+        fields: {
+            'preferenceId': {
+                type: Sequelize.MEDIUMINT.UNSIGNED,
+                allowNull: true,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            'houseType': {
+                type: Sequelize.ENUM,
+                values: ['House', 'Appartment']
+            },
+            'housemateGender': {
+                type: Sequelize.ENUM,
+                values: ['Male', 'Female']
+            },
+            'housemateFaculty': {
+                type: Sequelize.ENUM,
+                values: ['Engineering', 'Arts and Science', 'Law', 'Education', 'Business',
+                    'Health', 'Policy Studies']
+            }
+        }
+    },
+    '4': {
         table_name: 'HousingGroups',
         fields: {
-            'groupID': {
+            'groupId': {
                 type: Sequelize.MEDIUMINT.UNSIGNED,
                 allowNull: true,
                 primaryKey: true,
@@ -66,90 +108,40 @@ const tables = {
             },
             'size': {
                 type: Sequelize.TINYINT.UNSIGNED,
-                allowNull: false,
-                validate: {
-                    min: 1
-                }
+                allowNull: false
             },
-            'spotsFilled': {
+            'spotsLeft': {
                 type: Sequelize.TINYINT.UNSIGNED,
-                defaultValue: 1
-            },
-            'full': {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
-            'description': {
-                type: Sequelize.TEXT
+                defaultValue: 1,
             }
-        }
-    },
-    '4': {
-        table_name: 'Users',
-        fields: {
-            'netID': {
-                type: Sequelize.STRING(10),
-                allowNull: false,
-                primaryKey: true,
-                validate: {
-                    isAlphanumeric: true
-                }
-            },
-            'name': {
-                type: Sequelize.STRING(80),
-                allowNull: false,
-                validate: {
-                    is: /^[a-zA-Z ]+$/i
-                }
-            },
-            'email': {
-                type: Sequelize.STRING,
-                unique: true,
-                validate: {
-                    isEmail: true
-                }
-            },
-            'profile': {
-                type: Sequelize.MEDIUMINT.UNSIGNED,
-                references: {
-                    model: 'Profiles',
-                    key: 'profileID'
-                }
-            },
-            'housingGroup': {
-                type: Sequelize.MEDIUMINT.UNSIGNED,
-                references: {
-                    model: 'HousingGroups',
-                    key: 'groupID'
-                }
-            }
+        },
+        associations: (models) => {
+            let thisModel = models[lit.tables.HOUSING_GROUPS];
+            thisModel.hasMany(models[lit.tables.USERS], {as: 'Members', foreignKey: 'housingGroupId'});
+            thisModel.belongsTo(models[lit.tables.USERS], {as: 'Initiator', constraints: false});
+            thisModel.hasOne(models[lit.tables.HOUSING_GROUP_PROFILES],
+                  {as: 'groupProfile', foreignKey: 'housingGroupId'});
         }
     },
     '5': {
-        table_name: 'HousingApplications',
+        table_name: 'HousingGroupProfiles',
         fields: {
-            'applicationID': {
+            'profileId': {
                 type: Sequelize.MEDIUMINT.UNSIGNED,
                 allowNull: true,
                 primaryKey: true,
                 autoIncrement: true
             },
-            'userID': {
-                type: Sequelize.STRING(10),
-                references: {
-                    model: 'Users',
-                    key: 'netID'
-                }
-            },
-            'groupID': {
-                type: Sequelize.MEDIUMINT.UNSIGNED,
-                references: {
-                    model: 'HousingGroups',
-                    key: 'groupID'
-                }
-            },
-            'message': {
+            'description': {
                 type: Sequelize.TEXT
+            },
+            'genderConstraint': {
+                type: Sequelize.ENUM,
+                values: ['Male', 'Female', 'None']
+            },
+            'yearConstraint': {
+                type: Sequelize.ENUM,
+                values: ['Second', 'None']
             }
         }
     }
