@@ -1,5 +1,5 @@
 {
-  "name": "Queen's Housing Connect",
+  "name": "people-meeting-people",
   "version": "0.0.1",
   "description": "The Queen's Housemate Grouping Platform",
   "repository": {
@@ -11,6 +11,9 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mysql2": "^1.5.1",
-    "sequelize": "^4.23.1"
+    "sequelize": "^4.28.6"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0"
   }
 }

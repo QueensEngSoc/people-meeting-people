@@ -15,6 +15,7 @@ const fieldNames = {
     USER_ID: 'netId',
     USER_NAME: 'name',
     USER_EMAIL: 'email',
+    USER_PROFILE: 'profile',
 
     // field names for table Profiles
     PROFILE_ID: 'profileId',
