@@ -12,11 +12,5 @@
     "express": "^4.16.2",
     "mysql2": "^1.5.1",
     "sequelize": "^4.28.6"
-  },
-  "devDependencies": {
-    "jasmine": "^2.8.0"
-  },
-  "scripts": {
-    "test": "jasmine"
   }
 }

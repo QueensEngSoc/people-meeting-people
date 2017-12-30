@@ -21,7 +21,7 @@ const tables = {
                 type: Sequelize.STRING(80),
                 allowNull: false,
                 validate: {
-                    is: /^[a-zA-Z ]+$/i
+                    is: /^[a-zA-Z -.]+$/i
                 }
             },
             'email': {
