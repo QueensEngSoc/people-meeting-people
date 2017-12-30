@@ -13,8 +13,24 @@ const errors = require('../utilities/error');
  * The interface object for functionality relating to users
  */
 class User {
+    /**
+     *
+     * @param {Object} values
+     * @param {String} values.name The name of the user
+     * @param {String} values.email The email of the user
+     * @returns {Promise}
+     */
+    updateInfo(values) {
+        return new Promise((resolve, reject) => {
+            if (lit.fields.USER_ID in values) {
+                reject(new errors.IllegalEntryError('Attempting to change netID'));
+            }
+            this.instance_.update(values).then(resolve).catch(reject);
+        });
+    }
+
     constructor(instance) {
-        this.instance_ = instance
+        this.instance_ = instance;
     }
 
     static createUser(values, model) {

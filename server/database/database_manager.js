@@ -55,16 +55,16 @@ class DatabaseManager {
      * @return {Promise<User|DatabaseError>} resolves a User object
      */
     createUser(values) {
-        return User.createUser(values, this[lit.tables.USERS]);
+        return User.createUser(values, this.models_[lit.tables.USERS]);
     }
 
     /**
      * checks if a user with a provided netID exist in the database
-     * @param userID
-     * @returns boolean
+     * @param {String} userID
+     * @returns {boolean}
      */
     existsUser(userID) {
-        this[lit.tables.USERS].findById(userID).then((result) => {
+        this.models_[lit.tables.USERS].findById(userID).then((result) => {
             return result != null;
         });
     }
