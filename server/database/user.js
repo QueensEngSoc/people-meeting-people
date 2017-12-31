@@ -23,7 +23,7 @@ class User {
     updateInfo(values) {
         return new Promise((resolve, reject) => {
             if (lit.fields.USER_ID in values) {
-                reject(new errors.IllegalEntryError('Attempting to change netID'));
+                return reject(new errors.IllegalEntryError('Attempting to change netID'));
             }
             this.instance_.update(values).then(resolve).catch(reject);
         });
@@ -36,8 +36,9 @@ class User {
     static createUser(values, model) {
         return new Promise((resolve, reject) => {
             model.findById(values[lit.fields.USER_ID]).then((result) => {
-                if (result == null) reject(
-                    new errors.DuplicateEntryError('This user already exists in the database'));
+                if (result != null) {
+                    return reject(new errors.DuplicateEntryError('This user already exists in the database'));
+                }
                 return model.create(values);
             }).then((instance) => {
                 resolve(new User(instance));

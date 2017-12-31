@@ -51,9 +51,9 @@ class DatabaseManager {
     /**
      * Creates a new user and saves it to the database
      * @param {Object} values - Basic user information required to create a new user
-     * @param {String} values.netID - The netID of the new user, once set, cannot be changed
+     * @param {String} values.netId - The netID of the new user, once set, cannot be changed
      * @param {String} values.name - The name of the new user
-     * @param {String} values.email - The email of the new user
+     * @param {String} [values.email] - The email of the new user
      * @return {Promise<User|DatabaseError>} resolves a User object
      */
     createUser(values) {
@@ -62,11 +62,11 @@ class DatabaseManager {
 
     /**
      * checks if a user with a provided netID exist in the database
-     * @param {String} userID
+     * @param {String} userId
      * @returns {boolean}
      */
-    existsUser(userID) {
-        this.models_[lit.tables.USERS].findById(userID).then((result) => {
+    existsUser(userId) {
+        this.models_[lit.tables.USERS].findById(userId).then((result) => {
             return result != null;
         });
     }
