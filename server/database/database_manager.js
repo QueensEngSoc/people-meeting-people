@@ -18,6 +18,27 @@ const User = require('./user');
  */
 class DatabaseManager {
     /**
+     * Creates a new user and saves it to the database
+     * @param {Object} values - Basic user information required to create a new user
+     * @param {String} values.netId - The netID of the new user, once set, cannot be changed
+     * @param {String} values.name - The name of the new user
+     * @param {String} [values.email] - The email of the new user
+     * @return {Promise<User|DatabaseError>} resolves a User object
+     */
+    createUser(values) {
+        return User.createUser(values, this.models_[lit.tables.USERS]);
+    }
+
+    /**
+     * Gets a User object with the netId of the user, returns null if nothing is found
+     * @param {String} userId
+     * @returns {Promise<User|DatabaseError>} The User object found or null if this user doesn't exist
+     */
+    getUser(userId) {
+        return User.getUser(userId, this.models_[lit.tables.USERS]);
+    }
+
+    /**
      * The constructor initializes a database connection using Sequelize
      */
     constructor() {
@@ -45,29 +66,6 @@ class DatabaseManager {
             if ('associations' in value) {
                 obj[key].associations(thisManager.models_);
             }
-        });
-    }
-
-    /**
-     * Creates a new user and saves it to the database
-     * @param {Object} values - Basic user information required to create a new user
-     * @param {String} values.netId - The netID of the new user, once set, cannot be changed
-     * @param {String} values.name - The name of the new user
-     * @param {String} [values.email] - The email of the new user
-     * @return {Promise<User|DatabaseError>} resolves a User object
-     */
-    createUser(values) {
-        return User.createUser(values, this.models_[lit.tables.USERS]);
-    }
-
-    /**
-     * checks if a user with a provided netID exist in the database
-     * @param {String} userId
-     * @returns {boolean}
-     */
-    existsUser(userId) {
-        this.models_[lit.tables.USERS].findById(userId).then((result) => {
-            return result != null;
         });
     }
 

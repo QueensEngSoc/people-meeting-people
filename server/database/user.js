@@ -47,6 +47,20 @@ class User {
             });
         });
     }
+
+    static getUser(userId, model) {
+        return new Promise((resolve, reject) => {
+            model.findById(userId).then((result) => {
+                if (result == null) {
+                    resolve(null);
+                } else {
+                    resolve(new User(result));
+                }
+            }).catch(err => {
+                reject(new errors.FailedQueryError(error.message));
+            });
+        });
+    }
 }
 
 module.exports = User;
