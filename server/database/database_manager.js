@@ -9,6 +9,8 @@ const config = require('../config/config');
 const Sequelize = require('sequelize');
 const lit = require('../utilities/literals');
 const tables = require('../config/tables');
+const error = require('../utilities/error');
+const _ = require('underscore');
 const User = require('./user');
 
 /**
@@ -39,9 +41,9 @@ class DatabaseManager {
             let table = tables[key];
             thisManager.models_[table.table_name] = thisConnection.define(table.table_name, table.fields);
         }
-        Object.keys(tables).forEach((key) => {
-            if ('associations' in tables[key]) {
-                tables[key].associations(thisManager.models_);
+        _.each(tables, (value, key, obj) => {
+            if ('associations' in value) {
+                obj[key].associations(thisManager.models_);
             }
         });
     }
