@@ -26,7 +26,7 @@ class DatabaseManager {
      * @return {Promise<User|DatabaseError>} resolves a User object
      */
     createUser(values) {
-        return User.createUser(values, this.models_[lit.tables.USERS]);
+        return User.createUser(values, this.models_);
     }
 
     /**

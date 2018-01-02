@@ -34,7 +34,8 @@ const tables = {
         },
         associations: (models) => {
             let thisModel = models[lit.tables.USERS];
-            thisModel.hasOne(models[lit.tables.PROFILES], {as: 'profile', foreignKey: 'userId'});
+            thisModel.hasOne(models[lit.tables.PROFILES],
+                {as: 'profile', foreignKey: 'userId', onDelete: 'cascade'});
         }
     },
     '2': {
@@ -48,14 +49,12 @@ const tables = {
             },
             'year': {
                 type: Sequelize.ENUM,
-                values: ['1', '2', '3', '4', '5', 'Grad'],
-                allowNull: false
+                values: ['1', '2', '3', '4', '5', 'Grad']
             },
             'faculty': {
                 type: Sequelize.ENUM,
                 values: ['Engineering', 'Arts and Science', 'Law', 'Education', 'Business',
-                    'Health', 'Policy Studies'],
-                allowNull: false
+                    'Health', 'Policy Studies']
             },
             'gender': {
                 type: Sequelize.ENUM,
@@ -70,7 +69,8 @@ const tables = {
         },
         associations: (models) => {
             let thisModel = models[lit.tables.PROFILES];
-            thisModel.hasOne(models[lit.tables.HOUSING_PREFERENCES], {foreignKey: 'profileId'});
+            thisModel.hasOne(models[lit.tables.HOUSING_PREFERENCES],
+                {as: 'preference', foreignKey: 'profileId', onDelete: 'cascade'});
         }
     },
     '3': {
@@ -120,7 +120,7 @@ const tables = {
             thisModel.hasMany(models[lit.tables.USERS], {as: 'Members', foreignKey: 'housingGroupId'});
             thisModel.belongsTo(models[lit.tables.USERS], {as: 'Initiator', constraints: false});
             thisModel.hasOne(models[lit.tables.HOUSING_GROUP_PROFILES],
-                  {as: 'groupProfile', foreignKey: 'housingGroupId'});
+                {as: 'groupProfile', foreignKey: 'housingGroupId', onDelete: 'cascade'});
         }
     },
     '5': {

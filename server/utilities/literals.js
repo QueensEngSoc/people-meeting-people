@@ -12,35 +12,45 @@ const tableNames = {
 
 const fieldNames = {
     // field names for table Users
-    USER_ID: 'netId',
-    USER_NAME: 'name',
-    USER_EMAIL: 'email',
-    USER_PROFILE: 'profile',
+    USER: {
+        ID: 'netId',
+        NAME: 'name',
+        EMAIL: 'email',
+        PROFILE: 'profile',
+    },
 
     // field names for table Profiles
-    PROFILE_ID: 'profileId',
-    PROFILE_YEAR: 'year',
-    PROFILE_FACULTY: 'faculty',
-    PROFILE_GENDER: 'gender',
-    PROFILE_GENDER_SPECIFIC: 'genderIfOther',
-    PROFILE_SELF_DESCRIPTION: 'selfDescription',
+    PROFILE: {
+        ID: 'profileId',
+        YEAR: 'year',
+        FACULTY: 'faculty',
+        GENDER: 'gender',
+        GENDER_SPECIFIC: 'genderIfOther',
+        SELF_DESCRIPTION: 'selfDescription',
+    },
 
     // field names for table HousingGroups
-    HOUSING_GROUP_ID: 'groupId',
-    HOUSING_GROUP_SIZE: 'size',
-    HOUSING_GROUP_SPOTSFILLED: 'spotsLeft',
+    HOUSING_GROUP: {
+        ID: 'groupId',
+        SIZE: 'size',
+        SPOTS_LEFT: 'spotsLeft',
+    },
 
     // field names for table HousingGroupProfile
-    HOUSING_GROUP_PROFILE_ID: 'profileId',
-    HOUSING_GROUP_PROFILE_DESCRIPTION: 'description',
-    HOUSING_GROUP_PROFILE_GENDER: 'genderConstraints',
-    HOUSING_GROUP_PROFILE_YEAR: 'yearConstraints',
+    HOUSING_GROUP_PROFILE: {
+        ID: 'profileId',
+        DESCRIPTION: 'description',
+        GENDER: 'genderConstraints',
+        YEAR: 'yearConstraints',
+    },
 
     // field names for table HousingPreferences
-    HOUSING_PREFERENCE_ID: 'preferenceId',
-    HOUSING_PREFERENCE_HOUSETYPE: 'houseType',
-    HOUSING_PREFERENCE_HOUSEMATEGENDER: 'housemateGender',
-    HOUSING_PREFERENCE_HOUSEMATEFACULTY: 'housemateFaculty'
+    HOUSING_PREFERENCE: {
+        ID: 'preferenceId',
+        HOUSE_TYPE: 'houseType',
+        HOUSEMATE_GENDER: 'housemateGender',
+        HOUSEMATE_FACULTY: 'housemateFaculty'
+    }
 };
 
 const literals = {
