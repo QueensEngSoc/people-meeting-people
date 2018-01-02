@@ -3,14 +3,14 @@ const DatabaseManager = require('../../server/database');
 const lit = require('../../server/utilities/literals');
 const User = require('../../server/database/user');
 
-describe('updating user info', () => {
+describe('updating user info', function () {
     let dbm = new DatabaseManager();
     before((done) => {
         dbm.createUser({netId: '12ab3', name: 'Test User', email: '12ab3@queensu.ca'}).then(() => {
             done();
         }).catch(console.log);
     });
-    it('should update basic user info without error', () => {
+    it('should update basic user info without error', function () {
         return new Promise((resolve, reject) => {
             dbm.getUser('12ab3').then(result => {
                 return result.updateInfo({name: 'Old User', email: 'test@gmail.com'});
@@ -21,7 +21,7 @@ describe('updating user info', () => {
             }).catch(reject);
         });
     });
-    it('should add new profile to user without error', () => {
+    it('should add new profile to user without error', function () {
         return new Promise((resolve, reject) => {
             dbm.getUser('12ab3').then(result => {
                 return result.updateInfo({
@@ -39,7 +39,7 @@ describe('updating user info', () => {
             });
         });
     });
-    it('should update user profile without error', () => {
+    it('should update user profile without error', function () {
         return new Promise((resolve, reject) => {
             dbm.getUser('12ab3').then(result => {
                 return result.updateInfo({
@@ -55,7 +55,7 @@ describe('updating user info', () => {
             });
         });
     });
-    it('should update user housing preference without error', () => {
+    it('should update user housing preference without error', function () {
         return new Promise((resolve, reject) => {
             dbm.getUser('12ab3').then(result => {
                 return result.updateInfo({houseType: 'House', housemateGender: 'Female'});

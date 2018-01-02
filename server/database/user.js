@@ -33,7 +33,7 @@ class User {
         let thisUser = this;
         return new Promise((resolve, reject) => {
             if (lit.fields.USER.ID in values) {
-                return reject(new errors.IllegalEntryError('Attempting to change netID'));
+                throw new errors.IllegalEntryError('Attempting to change netID');
             }
             let userInfo = _.pick(values, (value, key) => _.contains(_.values(lit.fields.USER), key));
             let profile = _.pick(values, (value, key) => _.contains(_.values(lit.fields.PROFILE), key));
@@ -41,14 +41,18 @@ class User {
             this.instance_.update(userInfo).then(() => {
                 return this.instance_.getProfile();
             }).then(profileObj => {
-                profileObj.update(profile).then(() => {
+                return profileObj.update(profile).then(() => {
                     return profileObj.getPreference();
-                }).then(preferenceObj => {
-                    return preferenceObj.update(preference);
-                }).then(() => {
-                    resolve(thisUser);
                 });
-            })
+            }).then(preferenceObj => {
+                return preferenceObj.update(preference);
+            }).then(() => {
+                resolve(thisUser);
+            }).catch((error) => {
+                if (error instanceof errors.BaseError)
+                    return reject(error);
+                return reject(new errors.FailedQueryError(error.message));
+            });
         });
     }
 
@@ -68,7 +72,7 @@ class User {
             let thisUser = {};
             models[lit.tables.USERS].findById(values[lit.fields.USER.ID]).then((result) => {
                 if (result != null) {
-                    return reject(new errors.DuplicateEntryError('This user already exists in the database'));
+                    throw new errors.DuplicateEntryError('This user already exists in the database');
                 }
                 values['profile'] = {'preference': {}};
                 return models[lit.tables.USERS].create(values);
@@ -86,7 +90,9 @@ class User {
             }).then(() => {
                 resolve(thisUser);
             }).catch((error) => {
-                reject(new errors.FailedQueryError(error.message));
+                if (error instanceof errors.BaseError)
+                    return reject(error);
+                return reject(new errors.FailedQueryError(error.message));
             });
         });
     }
