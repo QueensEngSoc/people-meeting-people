@@ -36,6 +36,8 @@ const tables = {
             let thisModel = models[lit.tables.USERS];
             thisModel.hasOne(models[lit.tables.PROFILES],
                 {as: 'profile', foreignKey: 'userId', onDelete: 'cascade'});
+            thisModel.belongsTo(models[lit.tables.HOUSING_GROUPS],
+                {as: 'housingGroup', foreignKey: 'housingGroupId'});
         }
     },
     '2': {

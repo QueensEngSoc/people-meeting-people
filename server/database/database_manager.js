@@ -12,6 +12,7 @@ const tables = require('../config/tables');
 const error = require('../utilities/error');
 const _ = require('underscore');
 const User = require('./user');
+const HousingGroup = require('./housing_group');
 
 /**
  * The interface object for working with the database.
@@ -26,7 +27,7 @@ class DatabaseManager {
      * @return {Promise<User|DatabaseError>} resolves a User object
      */
     createUser(values) {
-        return User.createUser(values, this.models_);
+        return User.createUser(values, this.models_[lit.tables.USERS]);
     }
 
     /**
@@ -36,6 +37,16 @@ class DatabaseManager {
      */
     getUser(userId) {
         return User.getUser(userId, this.models_[lit.tables.USERS]);
+    }
+
+    /**
+     *
+     * @param {User} initiator - The initiator of the housing group
+     * @param {Integer} groupSize - The intended size of the housing group
+     * @returns {Promise<HousingGroup>}
+     */
+    createGroup(initiator, groupSize) {
+        return HousingGroup.createGroup(initiator, groupSize, this.models_[lit.tables.HOUSING_GROUPS]);
     }
 
     /**
