@@ -1,6 +1,6 @@
 /**
  * @fileoverview The interface object for all operations relating to users
- * @author astral.cai (Astral Cai)
+ * @author astral.cai@queensu.ca (Astral Cai)
  */
 
 "use strict";
@@ -67,26 +67,20 @@ class User {
         this.instance_ = instance;
     }
 
-    static createUser(values, models) {
+    static createUser(values, model) {
         return new Promise((resolve, reject) => {
             let thisUser = {};
-            models[lit.tables.USERS].findById(values[lit.fields.USER.ID]).then((result) => {
+            model.findById(values[lit.fields.USER.ID]).then((result) => {
                 if (result != null) {
                     throw new errors.DuplicateEntryError('This user already exists in the database');
                 }
                 values['profile'] = {'preference': {}};
-                return models[lit.tables.USERS].create(values);
+                return model.create(values);
             }).then(instance => {
                 thisUser = new User(instance);
-                return models[lit.tables.PROFILES].create({});
+                return instance.createProfile({});
             }).then(profile => {
-                return thisUser.instance_.setProfile(profile).then(() => {
-                    return models[lit.tables.HOUSING_PREFERENCES].create({});
-                });
-            }).then(preference => {
-                return thisUser.instance_.getProfile().then(profile => {
-                    return profile.setPreference(preference);
-                });
+                return profile.createPreference({});
             }).then(() => {
                 resolve(thisUser);
             }).catch((error) => {
