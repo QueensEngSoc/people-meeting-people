@@ -16,12 +16,10 @@ const fieldNames = {
         ID: 'netId',
         NAME: 'name',
         EMAIL: 'email',
-        PROFILE: 'profile',
     },
 
     // field names for table Profiles
     PROFILE: {
-        ID: 'profileId',
         YEAR: 'year',
         FACULTY: 'faculty',
         GENDER: 'gender',
@@ -31,14 +29,12 @@ const fieldNames = {
 
     // field names for table HousingGroups
     HOUSING_GROUP: {
-        ID: 'groupId',
         SIZE: 'size',
         SPOTS_LEFT: 'spotsLeft',
     },
 
     // field names for table HousingGroupProfile
     HOUSING_GROUP_PROFILE: {
-        ID: 'profileId',
         DESCRIPTION: 'description',
         GENDER: 'genderConstraints',
         YEAR: 'yearConstraints',
@@ -46,7 +42,6 @@ const fieldNames = {
 
     // field names for table HousingPreferences
     HOUSING_PREFERENCE: {
-        ID: 'preferenceId',
         HOUSE_TYPE: 'houseType',
         HOUSEMATE_GENDER: 'housemateGender',
         HOUSEMATE_FACULTY: 'housemateFaculty'

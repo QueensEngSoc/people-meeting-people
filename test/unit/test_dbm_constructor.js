@@ -1,25 +1,18 @@
-const expect = require('chai').expect;
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
+const expect = chai.expect;
+const should = chai.should();
 const DatabaseManager = require('../../server/database');
 const lit = require('../../server/utilities/literals');
 
 describe("DatabaseManager constructor", function () {
-    it("should create database manager without error", function (done) {
-        try {
-            let dbm = new DatabaseManager();
-            done();
-        } catch (err) {
-            done(err);
-        }
+    it("should create database manager without error", function () {
+        expect(() => new DatabaseManager()).to.not.throw();
     });
     it("should create a valid connection to the database", function () {
         let dbm = new DatabaseManager();
-        return new Promise(resolve => {
-            dbm.connection_.authenticate().then(() => {
-                return dbm.connection_.close();
-            }).then(() => {
-                resolve();
-            })
-        });
+        return dbm.connection_.authenticate().should.be.fulfilled;
     });
     it('should create a collection of sequelize models', function () {
         let dbm = new DatabaseManager();
