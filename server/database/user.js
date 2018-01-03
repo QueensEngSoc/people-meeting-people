@@ -15,6 +15,46 @@ const _ = require('underscore');
  */
 class User {
     /**
+     * gets user info, takes a string as input, resolves the requested info, if nothing is supplied to the function,
+     * it resolves a full json object containing all relevant info of the user
+     *
+     * @param {String} [field] - the target field of user info
+     * @returns {Promise}
+     */
+    getInfo(field) {
+        return new Promise((resolve, reject) => {
+            let userInfo = _.pick(this.instance_.get(), (value, key) => _.contains(_.values(lit.fields.USER), key));
+            this.instance_.getProfile().then(profile => {
+                userInfo['profile'] = _.pick(profile.get(), (value, key) =>
+                    _.contains(_.values(lit.fields.PROFILE), key));
+                return profile.getPreference();
+            }).then(preference => {
+                userInfo['profile']['preference'] = _.pick(preference.get(), (value, key) =>
+                    _.contains(_.values(lit.fields.HOUSING_PREFERENCE), key));
+                if (field == null)
+                    resolve(userInfo);
+                else if (_.contains(_.values(lit.fields.USER), field))
+                    resolve(userInfo[field]);
+                else if (field === 'profile')
+                    resolve(userInfo.profile);
+                else if (_.contains(_.values(lit.fields.PROFILE), field))
+                    resolve(userInfo.profile[field]);
+                else if (field === 'preference')
+                    resolve(userInfo.profile.preference);
+                else if (_.contains(_.values(lit.fields.HOUSING_PREFERENCE), field))
+                    resolve(userInfo.profile.preference[field]);
+                else
+                    throw new errors.IllegalEntryError('invalid field name: ' + field);
+            }).catch(error => {
+                if (error instanceof errors.BaseError)
+                    return reject(error);
+                return reject(new errors.FailedQueryError(error.message));
+            });
+        });
+    }
+
+    /**
+     * updates user info, takes a json object as its input, and updates all fields accordingly
      *
      * @param {Object} values
      * @param {String} [values.name] The name of the user
@@ -86,6 +126,8 @@ class User {
             }).catch((error) => {
                 if (error instanceof errors.BaseError)
                     return reject(error);
+                if (error instanceof Sequelize.ValidationError)
+                    return reject(new errors.IllegalEntryError(error.message));
                 return reject(new errors.FailedQueryError(error.message));
             });
         });
