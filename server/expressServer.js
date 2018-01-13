@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bp = require('body-parser');
-const config = require('../config/config');
+const config = require('./config/config');
 const server_config = config.server_config;
 
 app = express();

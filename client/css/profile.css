@@ -1,0 +1,209 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif, 'Helvetica';
+    line-height: 1.5;
+    background: rgba(63,146,235,0.98);
+
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    color: white;
+    background: white;
+    min-height: 70px;
+    padding-top: 2%;
+    border-bottom: darkblue solid;
+    border-width: 4px;
+}
+
+header a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: darkblue;
+    font-size: 20px;
+}
+header li{
+    float: right;
+    display: inline;
+    text-decoration: none;
+    padding: 0 20px 0 20px;
+}
+
+header #name{
+    float: left;
+    color: darkblue;
+
+}
+header #name h1{
+    margin: 0;
+    padding-bottom: 0;
+}
+
+header nav{
+    margin-top: 6px;
+    float: right;
+}
+
+header a:hover{
+    font-weight: bold;
+    color: darkblue;
+}
+
+#mid .about{
+    font-size: 30px;
+    color: white;
+    line-height: .5;
+}
+#mid{
+    margin-top: 15%;
+    margin-left: 15%;
+}
+.about h1{
+    text-shadow: 2px 4px darkblue;
+}
+footer{
+    margin-top: 40%
+}
+
+.information{
+    font-size: 17px;
+    font-family: sans-serif, 'Helvetica';
+    color: black;
+    text-align: center;
+    margin-top: 2%;
+    font-weight: bold;
+
+}
+footer .end {
+    text-align: center;
+    color: white;
+    margin-top: -40%;
+}
+.end p{
+    text-shadow: 2px 2px #00008b;
+}
+
+.pic1{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.Housinginfo{
+    font-family: sans-serif, 'Helvetica';
+    color: white;
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: 2%;
+}
+.name{
+    font-family: sans-serif, 'Helvetica';
+    color: white;
+    font-size: 20px;
+    margin-left: 9.5%;
+    margin-top: -1.5%;
+
+}
+
+.program{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+
+}
+
+.gradyear{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+
+
+}
+
+.Academicinfo{
+    font-family: sans-serif, 'Helvetica';
+    color: white;
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -29%;
+
+}
+.coed{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+
+.earlybird{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+.pineapple{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+.rent{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+.sandwich{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+.important{
+    font-family: sans-serif, 'Helvetica';
+    color: rgba(12,2,255,0.98);
+    font-size: 20px;
+    margin-left: 30%;
+    margin-top: -1.5%;
+}
+#description .info{
+    color: darkblue;
+    font-size: 18px;
+    display: block;
+    background: white;
+    padding: 18px;
+    width: 18%;
+    border-radius: 6px;
+    margin-left: 20%;
+    opacity: 0.9;
+}
+
+#description p{
+    font-weight: bold;
+    text-align: center;
+}
+#description .info{
+    box-shadow: 2px 4px darkblue;
+
+
+}
