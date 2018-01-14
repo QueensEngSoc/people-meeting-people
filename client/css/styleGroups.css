@@ -1,0 +1,249 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif, 'Helvetica';
+    line-height: 1.5;
+    background-color: #1a90e4;
+}
+
+.container{
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    color: white;
+    background: white;
+    min-height: 70px;
+    padding-top: 2%;
+    border-bottom: darkblue solid;
+    border-width: 4px;
+}
+
+header a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: darkblue;
+    font-size: 20px;
+}
+header li{
+    float: right;
+    display: inline;
+    text-decoration: none;
+    padding: 0 20px 0 20px;
+}
+
+header #name{
+    float: left;
+    color: darkblue;
+
+}
+header #name h1{
+    margin: 0;
+    padding-bottom: 0;
+}
+
+header nav{
+    margin-top: 6px;
+    float: right;
+}
+
+header a:hover{
+    font-weight: bold;
+    color: darkblue;
+}
+#title {
+    text-align: center;
+    padding-bottom: 60px;
+}
+#title .name{
+    margin-top: 4%;
+}
+#title .name h1{
+    color: white;
+    text-shadow: 1px 2px blue;
+    font-size: 30px;
+}
+#title h1 {
+    display: inline;
+    padding: 0;
+}
+#title .status h2 {
+    color: white;
+    text-shadow: 1px 2px blue;
+    font-size: 30px;
+    margin-top: 10%;
+}
+#title .list a{
+    text-decoration: none;
+    color: white;
+}
+#title .listtwo p{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.listtwo {
+    width: 12%;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+.listtwo p:hover{
+    font-weight: bold;
+}
+
+#title a:hover{
+    font-weight: bold;
+}
+.status{
+    display: block;
+    background: #4f99ff;
+    background-size: cover;
+}
+.status h6{
+    line-height: 0;
+    color: white;
+}
+/* Popup 1 */
+#popup_bg{
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#popup{
+    display: block;
+    background-color: white;
+    width: 250px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+    border-radius: 5px;
+}
+#popup p{
+    text-align: center;
+    line-height: 10px;
+}
+#popup .numberHousemates{
+    width: 150px;
+    margin-left: 50px;
+}
+#popup #submit{
+    margin-top: 12px;
+    margin-left: 100px;
+}
+#close{
+    width: 15px;
+    margin-left: 94%;
+}
+#close p{
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    padding-bottom: 0;
+    line-height: 16px;
+    display: block;
+    cursor: pointer;
+}
+/*   popup2   */
+#popup_bg2{
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#popup2{
+    display: block;
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    border-radius: 5px;
+}
+#popup2 p{
+    text-align: center;
+    line-height: 10px;
+}
+#popup2 textarea{
+    width: 150px;
+    margin-left: 70px;
+}
+#popup2 #submit2{
+    margin-left: 125px;
+}
+#close2{
+    width: 15px;
+    margin-left: 94%;
+}
+#close2 p{
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    padding-bottom: 0;
+    line-height: 16px;
+    display: block;
+    cursor: pointer;
+}
+/* Popup 3 */
+#popup_bg3{
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+#popup3{
+    display: block;
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    border-radius: 5px;
+}
+#popup3 p{
+    text-align: center;
+    line-height: 10px;
+}
+#popup3 textarea{
+    width: 150px;
+    margin-left: 70px;
+}
+#popup3 #submit3{
+    margin-left: 125px;
+}
+#close3{
+    width: 15px;
+    margin-left: 94%;
+}
+#close3 p{
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    padding-bottom: 0;
+    line-height: 16px;
+    display: block;
+    cursor: pointer;
+}
