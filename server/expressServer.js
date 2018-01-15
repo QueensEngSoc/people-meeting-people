@@ -6,7 +6,8 @@ const server_config = config.server_config;
 
 app = express();
 app.use(bp.json());
-app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));
+app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));  //use css files
+app.use('/files', express.static(path.join(__dirname, '..', 'client', 'css')));  //use java files
 
 const PORT = server_config.port;
 
@@ -24,32 +25,30 @@ app.get('/', function(request, response){
 
 
 app.get('/SignUp', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'signUpNew.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'signUpNew.html'));
 });   // gives the user the signup html page at the domain home path
 
 app.get('/Home', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'Homepage.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'Homepage.html'));
 });   // gives user the homepage of Queen's Housing Connect
 
 
 app.get('/MyProfile', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'profile.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'profile.html'));
 });   // shows the user their private profile
 
 app.get('/HousingResources', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'Housingresources.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'Housingresources.html'));
 });   // shows user their group information
 
 app.get('/MyGroups', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'myGroups.html'));
+    response.sendFile(path.join(__dirname, '..', 'client','html', 'myGroups.html'));
 });   // shows user their group information
 
 app.get('/Profile', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'profile.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'profile.html'));
 });   // shows user another user's public profile
 
-/*
-*/
 
 
 // POST requests
