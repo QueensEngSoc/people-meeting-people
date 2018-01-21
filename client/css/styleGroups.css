@@ -3,7 +3,7 @@ body{
     padding: 0;
     font-family: sans-serif, 'Helvetica';
     line-height: 1.5;
-    background-color: #1a90e4;
+    background-color: rgba(63,146,235,0.98);
 }
 
 .container{
@@ -94,6 +94,9 @@ header a:hover{
     margin-left: auto;
     margin-right: auto;
     text-decoration: none;
+}
+.listtwo ul li{
+    list-style: none;
 }
 .listtwo p:hover{
     font-weight: bold;
@@ -246,4 +249,38 @@ header a:hover{
     line-height: 16px;
     display: block;
     cursor: pointer;
+}
+
+#sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: white;
+    left: -200px;
+    transition: all 150ms linear;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+}
+#sidebar.active{
+    left: 0;
+}
+#sidebar ul li{
+    color: blue;
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid blue;
+}
+
+#sidebar .toggle-button{
+    position: relative;
+    left: 230px;
+    top: 20px;
+}
+#sidebar .toggle-button span{
+    display: block;
+    width: 40px;
+    height: 5px;
+    background: white;
+    margin: 3px 0;
 }
