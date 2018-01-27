@@ -97,54 +97,68 @@ class User {
     }
 
     /**
+     * allows a user to join a housing group, interchangeable with HousingGroup.addMember(), both returns a Promise
+     * that resolves the source of the action. User.joinGroup() resolves the User object, while HousingGroup.addMember()
+     * resolves the HousingGroup object.
+     *
+     * @param {HousingGroup} group - the group which the user wish to join
+     * @returns {Promise<User>}
+     */
+    joinGroup(group) {
+        return new Promise((resolve, reject) => {
+            return group.addMember(this).then(() => resolve(this)).catch(err => {
+                if (err instanceof errors.BaseError) {
+                    return reject(err);
+                }
+                return reject(new errors.FailedQueryError(err.message));
+            });
+        });
+    }
+
+    /**
+     *
+     * @return {Promise<any>}
+     */
+    leaveGroup() {
+        return new Promise((resolve, reject) => {
+            this.instance_.getHousingGroup().then(group => {
+                if (group == null)
+                    return reject(new errors.InvalidOperationError('This user does not belong to any group'));
+                return group.removeMember(this).then(() => resolve(this)).catch(err => {
+                    if (err instanceof errors.BaseError) {
+                        return reject(err);
+                    }
+                    return reject(new errors.FailedQueryError(err.message));
+                });
+            });
+        });
+    }
+
+    /**
      * deletes this user from the database
+     *
+     * @returns {Promise}
      */
     destroy() {
-        return this.instance_.destroy();
+        return new Promise((resolve, reject) => {
+            this.instance_.getHousingGroup().then(group => {
+                if (group != null)
+                    return this.leaveGroup().then(thisUser => {
+                        return thisUser.instance_.destroy();
+                    });
+                else
+                    return this.instance_.destroy();
+            }).then(() => resolve()).catch(err => {
+                if (err instanceof errors.BaseError) {
+                    return reject(err);
+                }
+                return reject(new errors.FailedQueryError(err.message));
+            });
+        });
     }
 
     constructor(instance) {
         this.instance_ = instance;
-    }
-
-    static createUser(values, model) {
-        return new Promise((resolve, reject) => {
-            let thisUser = {};
-            model.findById(values[lit.fields.USER.ID]).then((result) => {
-                if (result != null) {
-                    throw new errors.DuplicateEntryError('This user already exists in the database');
-                }
-                values['profile'] = {'preference': {}};
-                return model.create(values);
-            }).then(instance => {
-                thisUser = new User(instance);
-                return instance.createProfile({});
-            }).then(profile => {
-                return profile.createPreference({});
-            }).then(() => {
-                resolve(thisUser);
-            }).catch((error) => {
-                if (error instanceof errors.BaseError)
-                    return reject(error);
-                if (error instanceof Sequelize.ValidationError)
-                    return reject(new errors.IllegalEntryError(error.message));
-                return reject(new errors.FailedQueryError(error.message));
-            });
-        });
-    }
-
-    static getUser(userId, model) {
-        return new Promise((resolve, reject) => {
-            model.findById(userId).then((result) => {
-                if (result == null) {
-                    resolve(null);
-                } else {
-                    resolve(new User(result));
-                }
-            }).catch(err => {
-                reject(new errors.FailedQueryError(error.message));
-            });
-        });
     }
 }
 
