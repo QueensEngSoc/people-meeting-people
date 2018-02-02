@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Status</title>
+    <link rel="stylesheet" type="text/css" href="groupStatus.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div id="name">
+            <h1>Queen's <span class="emph">Housing Connect</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="   ">Search</a></li>
+                <li><a href="   ">My Profile</a></li>
+                <b><li><a href="myGroups.html">My Group</a></li></b>
+                <li><a href="   ">Housing Resources</a></li>
+                <li><a href="">Home</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div id="sidebar">
+    <div class="toggle-button" onclick="sideBar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <ul>
+        <b><li>My Group</li>
+            <li>Group Status</li></b>
+    </ul>
+</div>
+
+<div class="status-container">
+<div class="status">
+    <h2>Group Status</h2>
+    <h6>(Click on a status to edit)</h6>
+    <div class="listtwo">
+        <ul>
+            <li class="housemates"><p>Housemates Wanted:</p></li><br>
+            <li class="Style"><p>Housing Style:</p></li><br>
+            <li class="Contact"><p>Contact Information:</p></li><br>
+            <li class="House"><p>House:(pending/found)</p></li><br>
+        </ul>
+    </div>
+</div>
+    <div class="add-people">
+        <div class="icon-add">
+            <p>&#10010</p>
+            <p>Add People</p>
+        </div>
+    </div>
+</div>
+
+<!-- Popup 1 -->
+<div id="popup_bg">
+    <div id="popup">
+        <div id="close">
+            <p>X</p>
+        </div>
+        <p>Number of housemates wanted:</p>
+        <input class="numberHousemates" type="text" id="test">
+        <input type="submit" name="submit" id="submit" onclick="status_numberHousemates()">
+    </div>
+</div>
+<!-- Popup 2 -->
+<div id="popup_bg2">
+    <div id="popup2">
+        <div id="close2">
+            <p>X</p>
+        </div>
+        <p>Housing Style:</p>
+        <textarea id="input2" rows="10" cols="25"></textarea>
+        <input type="submit" name="submit2" id="submit2">
+    </div>
+</div>
+<!-- Popup 3 -->
+<div id="popup_bg3">
+    <div id="popup3">
+        <div id="close3">
+            <p>X</p>
+        </div>
+        <p>Contact info:</p>
+        <textarea id="contactInfo" rows="10" cols="25"></textarea>
+        <input type="submit" name="submit3" id="submit3">
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+<script src="jsGroups.js"></script>
+
+</body>
+</html>
