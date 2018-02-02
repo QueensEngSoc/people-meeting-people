@@ -1,13 +1,16 @@
 var express = require('express');
 var path = require('path');
 var bp = require('body-parser');
+var exphbs = require('express-handlebars');
 const config = require('./config/config');
 const server_config = config.server_config;
 
 app = express();
 app.use(bp.json());
-app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));  //use css files
-app.use('/files', express.static(path.join(__dirname, '..', 'client', 'css')));  //use java files
+app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));  // use css files
+app.use('/java', express.static(path.join(__dirname, '..', 'client', 'java')));  // use java files
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 const PORT = server_config.port;
 
@@ -16,7 +19,7 @@ app.get('/', function(request, response){
     // Send to SSO
     // Check if user has created a profile before
     // If profile exists, redirect to homepage
-    response.redirect('/SignUp');
+    response.redirect('/home');
 });
 
 
