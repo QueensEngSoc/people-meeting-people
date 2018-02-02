@@ -41,7 +41,7 @@ app.get('/HousingResources', function(request, response){
 });   // shows user their group information
 
 app.get('/MyGroups', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'myGroups.html'));
+    response.sendFile(path.join(__dirname, '..', 'client', 'groupStatus.html'));
 });   // shows user their group information
 
 app.get('/Profile', function(request, response){
