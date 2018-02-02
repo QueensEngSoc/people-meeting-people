@@ -26,14 +26,16 @@ app.get('/', function(request, response){
 
 // GET Requests
 
-
+/*
 app.get('/signUp', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'signUpNew.html'));
 });   // gives the user the signup html page at the domain home path
+*/
 
 app.get('/home', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'homepage.html'));
 });   // gives user the homepage of Queen's Housing Connect
+
 
 app.get('/myProfile', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'profile.html'));
