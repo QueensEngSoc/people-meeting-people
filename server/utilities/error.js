@@ -54,3 +54,13 @@ class IllegalEntryError extends DatabaseError {
 }
 
 exports.IllegalEntryError = IllegalEntryError;
+
+class InvalidOperationError extends DatabaseError {
+    constructor(message) {
+        super(message);
+        this.name = 'InvalidOperationError';
+        Error.captureStackTrace(this, this.constructor);
+    }
+}
+
+exports.InvalidOperationError = InvalidOperationError;
