@@ -23,29 +23,30 @@ app.get('/', function(request, response){
 
 // GET Requests
 
-
-app.get('/SignUp', function(request, response){
+/*
+app.get('/signUp', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'signUpNew.html'));
 });   // gives the user the signup html page at the domain home path
+*/
 
-app.get('/Home', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'Homepage.html'));
+app.get('/home', function(request, response){
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'homepage.html'));
 });   // gives user the homepage of Queen's Housing Connect
 
 
-app.get('/MyProfile', function(request, response){
+app.get('/myProfile', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'profile.html'));
 });   // shows the user their private profile
 
-app.get('/HousingResources', function(request, response){
-    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'Housingresources.html'));
+app.get('/housingResources', function(request, response){
+    response.sendFile(path.join(__dirname, '..', 'client', 'html', 'housingResources.html'));
 });   // shows user their group information
 
-app.get('/MyGroups', function(request, response){
+app.get('/myGroups', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client','html', 'myGroups.html'));
 });   // shows user their group information
 
-app.get('/Profile', function(request, response){
+app.get('/profile', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'profile.html'));
 });   // shows user another user's public profile
 
