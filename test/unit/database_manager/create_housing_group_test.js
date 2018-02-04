@@ -9,8 +9,9 @@ const _ = require('underscore');
 
 describe('DatabaseManager.createHousingGroup()', function () {
     let dbm = new DatabaseManager();
+    let groupId;
     before(function () {
-        return dbm.createUser({netId: '12ab3', name: 'Test User', email: '12ab3@queensu.ca'});
+        return dbm.models_[lit.tables.USERS].create({netId: '12ab3', name: 'Test User', email: '12ab3@queensu.ca'});
     });
     after(function () {
         return dbm.models_[lit.tables.USERS].findById('12ab3').then(user => {
@@ -18,9 +19,8 @@ describe('DatabaseManager.createHousingGroup()', function () {
         });
     });
     afterEach(function () {
-        return dbm.models_[lit.tables.USERS].findById('12ab3').then(user => {
-            return user.getHousingGroup();
-        }).then(group => {
+        if (groupId == null) return;
+        return dbm.models_[lit.tables.HOUSING_GROUPS].findById(groupId).then(group => {
             if (group != null)
                 return group.destroy();
         });
@@ -29,12 +29,14 @@ describe('DatabaseManager.createHousingGroup()', function () {
         return dbm.getUserById('12ab3').then(user => {
             return dbm.createHousingGroup(user, 4);
         }).then(group => {
+            console.log(_.functions(group.instance_));
+            groupId = group.instance_.get('groupId');
             group.instance_.get('size').should.equal(4);
             group.instance_.get('spotsLeft').should.equal(3);
             return group.instance_.getInitiator();
         }).then(initiator => {
             initiator.get('netId').should.equal('12ab3');
-            return initiator.getHousingGroup();
+            return dbm.models_[lit.tables.HOUSING_GROUPS].findById(groupId);
         }).then(group => {
             return group.getMembers();
         }).then(members => {
@@ -45,7 +47,8 @@ describe('DatabaseManager.createHousingGroup()', function () {
     it('should reject if a user who already belongs to a group tries to start a group', function () {
         return dbm.getUserById('12ab3').then(user => {
             return dbm.createHousingGroup(user, 4);
-        }).then(() => {
+        }).then((group) => {
+            groupId = group.instance_.get('groupId');
             return dbm.getUserById('12ab3');
         }).then(user => {
             return dbm.createHousingGroup(user, 6).should.be.rejectedWith(err.InvalidOperationError);

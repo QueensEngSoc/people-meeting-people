@@ -33,6 +33,7 @@ describe('User.updateInfo()', function () {
         }).then(user => {
             return user.instance_.getProfile();
         }).then(profile => {
+            console.log(_.functions(profile));
             profile.get('faculty').should.equal('Engineering');
             profile.get('gender').should.equal('Male');
             profile.get('selfDescription').should
