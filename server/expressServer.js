@@ -31,8 +31,9 @@ app.get('/myProfile', function(request, response){
 app.get('/housingResources', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'housingResources.html'));
 });   // shows user their group information
-app.get('/groupStatus', function(request, response){
+app.get('/groupStatus', function(request, response) {
     response.sendFile(path.join(__dirname, '..', 'client', 'groupStatus.html'));
+});
 app.get('/myGroups', function(request, response){
     response.sendFile(path.join(__dirname, '..', 'client','html', 'myGroups.html'));
 });   // shows user their group information
