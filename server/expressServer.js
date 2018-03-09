@@ -27,45 +27,47 @@ app.get('/signUp', function(request, response){
 app.get('/home', function(request, response){
     response.render('home');
 });   // shows user the homepage of Queen's Housing Connect
-app.get('/myProfile', function(request, response){
-    response.render('myProfile', {
-    "fullName": "Ryan",
-    "program": "eng",
-    "gradYear": "2020",
-    "co-ed": "yee",
-    "earlyNight": "earlybird",
-    "pineapple": "yes",
-    "priceRange": "500-600",
-    "hotdogSandy": "yes",
-    "housemateQualities": "nice"
-    });
+app.get('/myProfile/:id', function(request, response){
+    dbm.getUserById(request.params.id).then(function(user) {
+        response.render('myProfile', {
+            "fullName": user.name,
+            // "program": user.program,
+            // "gradYear": user.gradYear,
+            // "co-ed": user.coed,
+            // "earlyNight": user.earlyNight,
+            // "pineapple": user.pineapple,
+            // "priceRange": user.priceRange,
+            // "hotdogSandy": user.hotdogSandy,
+            // "housemateQualities": user.desiredQualities
+        });
+    })
 });   // shows the user their private profile
 app.get('/housingResources', function(request, response){
     response.render('housingResources');
-});   // shows user their group information
+});
 // app.get('/groupStatus', function(request, response) {
 //     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'groupStatus.html'));
 // });
-app.get('/myGroups', function(request, response){
-    response.render('myGroups', {
-        people: [
-            {"linkToProfile": "/home", "fullName": "Evan Latsky"},
-            {"linkToProfile": "/housingResources", "fullName": "Ryan Kwast"}
-        ]
-    });
+app.get('/myGroups/:groupid', function(request, response){
+    dbm.getHousingGroupById(request.params.groupid).then(function(group){
+        for (i = 0; i < group.numUsers; i++){
+            people[i]: {"linkToProfile": "/myProfile/" + group.getMembers()[i].id, "fullName": group.getMembers()[i]};
+        }
+        response.render('myGroups', people);
+    }
 });   // shows user their group information
 
-app.get('/profile/:id', function(request, response){
-    dbm.getUserById(request.params.id).then(function(user){
-        response.render('profile', user.Id);
-    })
+// app.get('/profile/:id', function(request, response){
+//     dbm.getUserById(request.params.id).then(function(user){
+//         response.render('profile', user.Id);
+//     })
 
 });   // shows user another user's public profile
 
 
 // POST requests
 
-app.post('/NewUser', function(request, response){
+app.post('/newUser', function(request, response){
     var entries = request.body;
     // parse body
     dbm.createUser({
