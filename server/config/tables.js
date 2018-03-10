@@ -67,6 +67,16 @@ const tables = {
       },
       'selfDescription': {
         type: Sequelize.TEXT
+      },
+      'sleepHabits': {
+        type: Sequelize.ENUM,
+        values: ['Early_bird', 'Night_owl']
+      },
+      'pineappleOnPizza': {
+        type: Sequelize.BOOLEAN
+      },
+      'hotDogIsSandwich': {
+        type: Sequelize.BOOLEAN
       }
     },
     associations: (models) => {
@@ -99,16 +109,6 @@ const tables = {
       },
       'rentMaximum': {
         type: Sequelize.MEDIUMINT
-      },
-      'sleepHabits': {
-        type: Sequelize.ENUM,
-        values: ['Early_bird', 'Night_owl']
-      },
-      'pineappleOnPizza': {
-        type: Sequelize.BOOLEAN
-      },
-      'hotDogIsSandwich': {
-        type: Sequelize.BOOLEAN
       }
     }
   },
