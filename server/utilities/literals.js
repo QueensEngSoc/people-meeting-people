@@ -25,6 +25,9 @@ const fieldNames = {
     GENDER: 'gender',
     GENDER_SPECIFIC: 'genderIfOther',
     SELF_DESCRIPTION: 'selfDescription',
+    SLEEP_HABITS: 'sleepHabits',
+    PINEAPPLE_PIZZA: 'pineappleOnPizza',
+    HOT_DOG_SANDWICH: 'HotDogIsSandwich'
   },
 
   // field names for table HousingGroups
@@ -44,7 +47,10 @@ const fieldNames = {
   HOUSING_PREFERENCE: {
     HOUSE_TYPE: 'houseType',
     CO_ED_OK: 'co_ed',
-    HOUSEMATE_FACULTY: 'housemateFaculty'
+    HOUSEMATE_FACULTY: 'housemateFaculty',
+    HOUSEMATE_QUALITIES: 'housemateQualities',
+    RENT_MINIMUM: 'rentMinimum',
+    RENT_MAXIMUM: 'rentMaximum'
   }
 };
 
