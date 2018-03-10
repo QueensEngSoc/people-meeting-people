@@ -50,16 +50,21 @@ app.get('/housingResources', function(request, response){
 //     response.sendFile(path.join(__dirname, '..', 'client', 'html', 'groupStatus.html'));
 // });
 app.get('/myGroups/:groupid', function(request, response){
+    let people = [];
     dbm.getHousingGroupById(request.params.groupid).then(function(group){
         return group.getMembers();
     }).then(function(members) {
+        let actions = [];
         members.forEach(function (member) {
-            
+            actions.push(member.getInfo());
         });
-        for (i = 0; i < group.numUsers; i++){
-            people[i]: {"linkToProfile": "/myProfile/" + group.getMembers()[i].id, "fullName": group.getMembers()[i]};
-        }
-        response.render('myGroups', people);
+        Promise.all(actions).then(function (values) {
+            values.forEach(function (info) {
+                people.push({linkToProfile: '/myProfile/' + info[lit.fields.USER.ID],
+                    fullName: info[lit.fields.USER.NAME]});
+            });
+            response.render('myGroups', people);
+        });
     })
 });   // shows user their group information
 
