@@ -4,6 +4,7 @@ const bp = require('body-parser');
 const exphbs = require('express-handlebars');
 const config = require('./config/config');
 const server_config = config.server_config;
+const lit = require('./utilities/literals');
 app = express();
 app.use(bp.json());
 app.use('/css', express.static(path.join(__dirname, '..', 'client', 'css')));  // use css files
