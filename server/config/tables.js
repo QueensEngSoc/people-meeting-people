@@ -86,16 +86,29 @@ const tables = {
       },
       'houseType': {
         type: Sequelize.ENUM,
-        values: ['House', 'Appartment']
+        values: ['House', 'Apartment']
       },
-      'housemateGender': {
-        type: Sequelize.ENUM,
-        values: ['Male', 'Female']
+      'co_ed': {
+        type: Sequelize.BOOLEAN
       },
-      'housemateFaculty': {
+      'housemateQualities': {
+        type: Sequelize.TEXT
+      },
+      'rentMinimum': {
+        type: Sequelize.MEDIUMINT
+      },
+      'rentMaximum': {
+        type: Sequelize.MEDIUMINT
+      },
+      'sleepHabits': {
         type: Sequelize.ENUM,
-        values: ['Engineering', 'Arts and Science', 'Law', 'Education', 'Business',
-          'Health', 'Policy Studies']
+        values: ['Early_bird', 'Night_owl']
+      },
+      'pineappleOnPizza': {
+        type: Sequelize.BOOLEAN
+      },
+      'hotDogIsSandwich': {
+        type: Sequelize.BOOLEAN
       }
     }
   },
@@ -137,9 +150,8 @@ const tables = {
       'description': {
         type: Sequelize.TEXT
       },
-      'genderConstraint': {
-        type: Sequelize.ENUM,
-        values: ['Male', 'Female', 'None']
+      'co_ed': {
+        type: Sequelize.BOOLEAN
       },
       'yearConstraint': {
         type: Sequelize.ENUM,
