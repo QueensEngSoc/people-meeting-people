@@ -6,6 +6,7 @@
 "use strict";
 
 const dbsetup = require('./setup/db_setup');
+const load_data = require('./setup/load_mock_data');
 const log = require('./utilities/log');
 
 setup().then(() => {

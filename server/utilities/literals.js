@@ -36,14 +36,14 @@ const fieldNames = {
   // field names for table HousingGroupProfile
   HOUSING_GROUP_PROFILE: {
     DESCRIPTION: 'description',
-    GENDER: 'genderConstraints',
+    CO_ED: 'co_ed',
     YEAR: 'yearConstraints',
   },
 
   // field names for table HousingPreferences
   HOUSING_PREFERENCE: {
     HOUSE_TYPE: 'houseType',
-    HOUSEMATE_GENDER: 'housemateGender',
+    CO_ED_OK: 'co_ed',
     HOUSEMATE_FACULTY: 'housemateFaculty'
   }
 };
