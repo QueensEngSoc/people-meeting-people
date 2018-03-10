@@ -30,15 +30,15 @@ app.get('/home', function(request, response){
 app.get('/myProfile/:id', function(request, response){
     dbm.getUserById(request.params.id).then(function(user) {
         response.render('myProfile', {
-            "fullName": user.name,
-            // "program": user.program,
-            // "gradYear": user.gradYear,
-            // "co-ed": user.coed,
-            // "earlyNight": user.earlyNight,
-            // "pineapple": user.pineapple,
-            // "priceRange": user.priceRange,
-            // "hotdogSandy": user.hotdogSandy,
-            // "housemateQualities": user.desiredQualities
+            "fullName": user[lit.fields.USER.NAME],
+            "program": user[lit.fields.PROFILE.FACULTY],
+            "gradYear": user[lit.fields.PROFILE.YEAR],
+            "co-ed": user[lit.fields.HOUSING_PREFERENCE.CO_ED_OK]? 'Yes':'No',
+            "earlyNight": user[lit.fields.PROFILE.SLEEP_HABITS],
+            "pineapple": user[lit.fields.PROFILE.PINEAPPLE_PIZZA]? 'Yes':'No',
+            "priceRange": user[lit.fields.HOUSING_PREFERENCE.RENT_MINIMUM] + " - " + user[lit.fields.HOUSING_PREFERENCE.RENT_MAXIMUM],
+            "hotdogSandy": user[lit.fields.PROFILE.HOT_DOG_SANDWICH]? 'Yes':'No',
+            "housemateQualities": user[lit.fields.HOUSING_PREFERENCE.HOUSE_TYPE]
         });
     })
 });   // shows the user their private profile
@@ -50,11 +50,16 @@ app.get('/housingResources', function(request, response){
 // });
 app.get('/myGroups/:groupid', function(request, response){
     dbm.getHousingGroupById(request.params.groupid).then(function(group){
+        return group.getMembers();
+    }).then(function(members) {
+        members.forEach(function (member) {
+            
+        });
         for (i = 0; i < group.numUsers; i++){
             people[i]: {"linkToProfile": "/myProfile/" + group.getMembers()[i].id, "fullName": group.getMembers()[i]};
         }
         response.render('myGroups', people);
-    }
+    })
 });   // shows user their group information
 
 // app.get('/profile/:id', function(request, response){
@@ -62,7 +67,7 @@ app.get('/myGroups/:groupid', function(request, response){
 //         response.render('profile', user.Id);
 //     })
 
-});   // shows user another user's public profile
+// shows user another user's public profile
 
 
 // POST requests
