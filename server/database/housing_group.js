@@ -49,7 +49,7 @@ class HousingGroup {
       let groupInfo = _.pick(values, (value, key) => _.contains(_.values(lit.fields.HOUSING_GROUP), key));
       let profile = _.pick(values, (value, key) => _.contains(_.values(lit.fields.HOUSING_GROUP_PROFILE), key));
       this.instance_.update(groupInfo).then(() => {
-        return this.instance_.getGroupProfile();
+        return thisGroup.instance_.getGroupProfile();
       }).then(profileObj => {
         return profileObj.update(profile);
       }).then(() => {
@@ -71,7 +71,7 @@ class HousingGroup {
    * @returns {Promise<HousingGroup>}
    */
   addUser(newMember) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       if (this.instance_.get(lit.fields.HOUSING_GROUP.SPOTS_LEFT) === 0) {
         return reject(new errors.InvalidOperationError('This group is already full'));
       }
@@ -92,7 +92,7 @@ class HousingGroup {
   }
 
   removeUser(member, newInitiator) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       member.instance_.getHousingGroup().then(group => {
         if (group == null || group.get('groupId') !== this.instance_.get('groupId'))
           throw new errors.InvalidOperationError('This user is not in this group');
@@ -118,7 +118,7 @@ class HousingGroup {
   }
 
   getMembers() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.instance_.getMembers().then(members => {
         let allMembers = [];
         for (let member in members) {
@@ -135,7 +135,7 @@ class HousingGroup {
   }
 
   getInitiator() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.instance_.getInitiator().then(initiator => {
         return resolve(new User(initiator));
       }).catch(err => {
@@ -152,7 +152,7 @@ class HousingGroup {
   }
 
   transferOwnershipTo(member) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.instance_.setInitiator(member.instance_).then(() => {
         resolve(this);
       }).catch(err => {

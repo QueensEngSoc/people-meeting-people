@@ -59,13 +59,16 @@ class User {
    * @param {Object} values
    * @param {String} [values.name] The name of the user
    * @param {String} [values.email] The email of the user
-   * @param {String} [values.year] The year of the user
+   * @param {Integer} [values.year] The year of the user
    * @param {String} [values.faculty] The faculty of the user
    * @param {String} [values.gender] The gender of the user (Male, Female, or Other)
    * @param {String} [values.genderIfOther] If "Other" is selected for gender, what the user identify with
    * @param {String} [values.selfDescription] The self description of the user
-   * @param {String} [values.houseType] user preferred type of housing (House or Appartment)
-   * @param {String} [values.housemateGender] user preferred housemate gender
+   * @param {String} [values.houseType] user preferred type of housing (House or Apartment)
+   * @param {Boolean} [values.co_ed] is the user ok with a co-ed house
+   * @param {String} [values.sleepHabits] is the user a night owl or early bird
+   * @param {Boolean} [values.pineappleOnPizza] is the user ok with pineapples on pizza
+   * @param {Boolean} [values.hotDogIsSandwich] is hot dog a sandwich?
    * @param {String} [values.housemateFaculty] user preferred housemate faculty
    * @returns {Promise<User>}
    */
