@@ -24,7 +24,7 @@ class DatabaseManager {
    * @param {String} values.netId - The netID of the new user, once set, cannot be changed
    * @param {String} values.name - The name of the new user
    * @param {String} [values.email] - The email of the new user
-   * @return {Promise<User|DatabaseError>} resolves a User object
+   * @return {Promise<User>} resolves a User object
    */
   createUser(values) {
     return new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ class DatabaseManager {
   /**
    * Gets a User object with the netId of the user, returns null if nothing is found
    * @param {String} userId
-   * @returns {Promise<User|DatabaseError>} The User object found or null if this user doesn't exist
+   * @returns {Promise<User>} The User object found or null if this user doesn't exist
    */
   getUserById(userId) {
     return new Promise((resolve, reject) => {
@@ -116,6 +116,7 @@ class DatabaseManager {
    * @returns {Promise<HousingGroup>}
    */
   createHousingGroup(initiator, groupSize) {
+    let newHousingGroup;
     return new Promise((resolve, reject) => {
       return initiator.instance_.getHousingGroup().then(group => {
         // group is a Sequelize model instance or null
@@ -130,7 +131,10 @@ class DatabaseManager {
       }).then(group => {
         return group.setInitiator(initiator.instance_);
       }).then(group => {
-        return resolve(new HousingGroup(group)); // resolve wrapper object around Sequelize instance
+        newHousingGroup = group;
+        return group.createGroupProfile({});
+      }).then(() => {
+        return resolve(new HousingGroup(newHousingGroup)); // resolve wrapper object around Sequelize instance
       }).catch(error => {
         if (error instanceof errors.BaseError)
           return reject(error);

@@ -27,7 +27,7 @@ const fieldNames = {
     SELF_DESCRIPTION: 'selfDescription',
     SLEEP_HABITS: 'sleepHabits',
     PINEAPPLE_PIZZA: 'pineappleOnPizza',
-    HOT_DOG_SANDWICH: 'HotDogIsSandwich'
+    HOT_DOG_SANDWICH: 'hotDogIsSandwich'
   },
 
   // field names for table HousingGroups

@@ -36,11 +36,36 @@ module.exports = function () {
         sleep_Habits: 'Early_bird',
         pineappleOnPizza: false,
         hotDogIsSandwich: true
+      }).then(() => {
+        return dbm.createUser({netId: '12ab5', name: 'Third User', email: '12ab5@queensu.ca'});
+      })
+    }).then(user => {
+      return user.updateInfo({
+        selfDescription: "I'm a second year commerce student",
+        year: 2,
+        faculty: 'Business',
+        gender: 'Female',
+        houseType: 'Apartment',
+        co_ed: true,
+        housemateQualities: 'I love exercise',
+        rentMinimum: 700,
+        rentMaximum: 1000,
+        sleep_Habits: 'Early_bird',
+        pineappleOnPizza: false,
+        hotDogIsSandwich: true
+      }).then(() => {
+        return dbm.createHousingGroup(user, 4);
+      });
+    }).then(group => {
+      return group.updateInfo({co_ed: true});
+    }).then(group => {
+      return dbm.getUserById('12ab3').then(user => {
+        return group.addUser(user);
       });
     }).then(() => {
-      return resolve('mock data loaded');
+      console.log('mock data loaded')
     }).catch(err => {
-      return reject(err);
+      reject(err);
     })
   });
 };

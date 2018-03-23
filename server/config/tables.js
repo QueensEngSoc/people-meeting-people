@@ -155,7 +155,7 @@ const tables = {
       },
       'yearConstraint': {
         type: Sequelize.ENUM,
-        values: ['Second', 'None']
+        values: ['First', 'Second', 'Third', 'Fourth', 'None']
       }
     }
   }
